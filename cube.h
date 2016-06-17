@@ -14,17 +14,35 @@
  	orange
  };
 
+ enum SIDE{
+ 	front,
+ 	top,
+ 	left,
+ 	back,
+ 	bottom,
+ 	right
+ };
+
 typedef struct face Face;
 
 struct face{
 	int face_color;
 	int face_state[3][3];
+	int upFace;
+	int downFace;
+	int leftFace;
+	int rightFace;
+	int backFace;
 };
 
 typedef struct cube Cube;
 
 struct cube{
 	Face faces[6];
+	/*TODO: impliment cube for the alternate implimentation*/
+
+	/*one more implimentation using 3 arrays*/
+	int cube[3][3][3];
 };
 
 /*initilize a face with all cubies colored color*/
@@ -35,6 +53,9 @@ Face paint_face(Face face, int color);
 
 /*paint a cubie color*/
 Face paint_cubie(Face face, int x, int y, int color);
+
+/*get cubie color*/
+int get_cubie(Face face, int x, int y);
 
 /*create a cube in a solved state*/
 Cube cube_create(void);
