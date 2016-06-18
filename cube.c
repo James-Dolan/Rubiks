@@ -27,41 +27,49 @@ Face init_face(int color){
 	face = paint_face(face, color);
 	switch (color){
 		case blue:
-			face.upFace = orange;
-			face.downFace = red;
-			face.leftFace = white;
-			face.rightFace = yellow;
-			face.backFace = green;
+			face.fBlue = cur;
+			face.fWhite = left;
+			face.fRed = bottom;
+			face.fGreen = back;
+			face.fYellow = right;
+			face.fOrange = top;
 		case white:
-			face.upFace = orange;
-			face.downFace = red;
-			face.leftFace = green;
-			face.rightFace = blue;
-			face.backFace = yellow;
-		case green:
-			face.upFace = orange;
-			face.downFace = red;
-			face.leftFace = yellow;
-			face.rightFace = white;
-			face.backFace = blue;
-		case yellow:
-			face.upFace = orange;
-			face.upFace = red;
-			face.leftFace = blue;
-			face.rightFace = green;
-			face.backFace = white;
-		case orange:
-			face.upFace = green;
-			face.downFace = blue;
-			face.leftFace = white;
-			face.rightFace = yellow;
-			face.backFace = red;
+			face.fBlue = right;
+			face.fWhite = cur;
+			face.fRed = bottom;
+			face.fGreen = left;
+			face.fYellow = back;
+			face.fOrange = top;
 		case red:
-			face.upFace = blue;
-			face.downFace = green;
-			face.leftFace = white;
-			face.rightFace = yellow;
-			face.backFace = orange;
+			face.fBlue = top;
+			face.fWhite = left;
+			face.fRed = cur;
+			face.fGreen = bottom;
+			face.fYellow = right;
+			face.fOrange = back;
+		case green:
+			face.fBlue = back;
+			face.fWhite = right;
+			face.fRed = bottom;
+			face.fGreen = cur;
+			face.fYellow = left;
+			face.fOrange = up;
+		case yellow:
+			face.fBlue = left;
+			face.fWhite = back;
+			face.fRed = bottom;
+			face.fGreen = right;
+			face.fYellow = cur;
+			face.fOrange = top;
+		case orange:
+			face.fBlue = bottom;
+			face.fWhite = left;
+			face.fRed = back;
+			face.fGreen = top;
+			face.fYellow = right;
+			face.fOrange = cur;
+
+		
 	}
 
 	return(face);
@@ -83,7 +91,7 @@ Cube cube_create(){
  white - 1
  red - 2
  green - 3
- yello - 4
+ yellow - 4
  orange - 5
  */
 Cube rotate_c(Cube cube, Face face){
@@ -92,7 +100,7 @@ Cube rotate_c(Cube cube, Face face){
 	switch (face){
 
 
-		case 0:
+		case blue:
 			/*corners of the face */
 			newFace.face_state[0][0] = face.face_state[2][0];
 			newFace.face_state[0][2] = face.face_state[0][0];
@@ -105,9 +113,52 @@ Cube rotate_c(Cube cube, Face face){
 			newFace.face_state[2][1] = face.face_state[1][2];
 			newFace.face_state[1][0] = face.face_state[2][1];
 
-			cube.faces[0] = newFace;
+			cube.faces[blue] = newFace;
 
-			/*other sides rotation*/
+			/*other sides rotation
+			uses top mid and bot to represent direction of rotation 
+			(i.e. top is closest to the face that its rotating to)
+
+			orientation I used is to have the red/white/blue corner in the bottom left when the blue face is facing you
+
+			then sets the appropriate cubie to the color
+
+
+			There's a lot of repeating code that needs to be condensed in a future update
+
+			*/
+			int topWhite = cube.faces[white].face_state[2][2];
+			int midWhite = cube.faces[white].face_state[2][1];
+			int botWhite = cube.faces[white].face_state[2][0];
+
+			int topOrange = cube.faces[orange].face_state[2][0];
+			int midOrange = cube.faces[orange].face_state[1][0];
+			int botOrange = cube.faces[orange].face_state[0][0];
+
+			int topYellow = cube.faces[yellow].face_state[0][0];
+			int midYellow = cube.faces[yellow].face_state[0][1];
+			int botYellow = cube.faces[yellow].face_state[0][2];
+
+			int topRed = cube.faces[red].face_state[0][2];
+			int midRed = cube.faces[red].face_state[1][2];
+			int botRed = cube.faces[red].face_state[2][2];
+
+			cube.faces[white].face_state[2][2] = topRed;
+			cube.faces[white].face_state[2][1] = midRed;
+			cube.faces[white].face_state[2][0] = botRed;
+
+			cube.faces[orange].face_state[2][0] = topWhite;
+			cube.faces[orange].face_state[1][0] = midWhite;
+			cube.faces[orange].face_state[0][0] = botWhite;
+
+			cube.faces[yellow].face_state[0][2] = topOrange;
+			cube.faces[yellow].face_state[0][1] = midOrange;
+			cube.faces[yellow].face_state[0][0] = botOrange;
+
+			cube.faces[red].face_state[2][0] = topYellow;
+			cube.faces[red].face_state[2][1] = midYellow;
+			cube.faces[red].face_state[2][2] = botYellow;
+
 			
 
 

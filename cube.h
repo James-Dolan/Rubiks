@@ -15,7 +15,7 @@
  };
 
  enum SIDE{
- 	front,
+ 	cur,
  	top,
  	left,
  	back,
@@ -28,12 +28,12 @@ typedef struct face Face;
 struct face{
 	int face_color;
 	int face_state[3][3];
-	int upFace;
-	int downFace;
-	int leftFace;
-	int rightFace;
-	int backFace;
-};
+	int fBlue;
+	int fWhite;
+	int fRed;
+	int fGreen;
+	int fYellow;
+	int fOrange;
 
 typedef struct cube Cube;
 
