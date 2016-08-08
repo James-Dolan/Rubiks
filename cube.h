@@ -1,48 +1,72 @@
 /*Header for face and cube struct
- *Author: James Dolan, 2016
- */
+*Author: James Dolan, 2016
+*/
 
- #ifndef _CUBE_H_
- #define _CUBE_H_
+#ifndef _CUBE_H_
+#define _CUBE_H_
 
- enum COLOR{
- 	blue,
- 	white,
- 	red,
- 	green,
- 	yellow,
- 	orange
- };
+enum COLOR{
+	blue,
+	white,
+	red,
+	green,
+	yellow,
+	orange
+};
 
- enum SIDE{
- 	cur,
- 	top,
- 	left,
- 	back,
- 	bottom,
- 	right
- };
+enum SIDE{
+	cur,
+	top,
+	left,
+	back,
+	bottom,
+	right
+};
+
+typedef struct corner Corner;
+
+struct corner
+{
+	//3 colors per corner
+	char colors[3];
+
+	//0, 1, 2; 0 being the proper orientation
+	int orient;
+	
+};
+
+typedef struct edge Edge;
+
+struct edge
+{
+	//2 colors per corner
+	char colors[2];
+
+	//0, 1; 0 being the proper oreientation
+	int orient;
+
+};
 
 typedef struct face Face;
 
 struct face{
-	int face_color;
-	int face_state[3][3];
-	int fBlue;
-	int fWhite;
-	int fRed;
-	int fGreen;
-	int fYellow;
-	int fOrange;
+int face_color;
+int face_state[3][3];
+int fBlue;
+int fWhite;
+int fRed;
+int fGreen;
+int fYellow;
+int fOrange;
 
 typedef struct cube Cube;
 
 struct cube{
-	Face faces[6];
-	/*TODO: impliment cube for the alternate implimentation*/
+Face faces[6];
+/*TODO: impliment cube for the alternate implimentation*/
 
-	/*one more implimentation using 3 arrays*/
-	int cube[3][3][3];
+/*one more implimentation using 3 arrays*/
+int cube[3][3][3];
 };
 
 /*initilize a face with all cubies colored color*/

@@ -159,11 +159,16 @@ Cube rotate_c(Cube cube, Face face){
 			cube.faces[red].face_state[2][1] = midYellow;
 			cube.faces[red].face_state[2][2] = botYellow;
 
+		case white:
+
+			
+
 			
 
 
 	}
 }
+
 
 int main(){
 	Cube cube;
