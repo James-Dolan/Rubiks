@@ -26,64 +26,298 @@ int rotate(int face, int direction)
 			for(int i = 0; i<12; i++){
 				strncpy(tmpEdge[i], cube[blueEdge[i]], 1);
 			}
-			if(direction){
-				//face rotation
+		
+			//face rotation
 
-				//to do this where the cube index is greater than 9,
-				//use the same modulo then add an offset that unique to each side
+			//to do this where the cube index is greater than 9,
+			//use the same modulo then add an offset that unique to each side
 
-				//blue edge rotation
-				int k = 3;
-				for(int i=0; i<4; i++){
+			//blue edge rotation
+			int k = 3;
+			for(int i=0; i<4; i++){
+				if(direction){
 					strncpy(cube[k], tmpSide[bEdge[i]], 1);
-					k = (k+2)%9;
 				}
-				//blue corner rotation
-				int k = 6
-				for(int i=0; i<4; i++){
+				else if(!direction){
+					strncpy(cube[bEdge[i]], tmpSide[k], 1);
+				}
+				k = (k+2)%8;
+			}
+			//blue corner rotation
+			int k = 6
+			for(int i=0; i<4; i++){
+				if(direction){
 					strncpy(cube[k], tmpSide[bCorn[i]], 1);
-					k=(k+2)%9;
-					if(k==4){
-						k+=2;
-					}
 				}
-
-				//edges rotation
-
-				int k = 9;
-				for(int i=0; i<12; i++){
-					strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
-					k = (k+1)%12;
+				else if(!direction){
+					strncpy(cube[bCorn[i]], tmpSide[k], 1);
 				}
-				return 0;
-
-			}
-			else{
-				//face rotation
-				strncpy(cube,    tmpSide[6], 1);
-				strncpy(cube[1], tmpSide[3], 1);
-				strncpy(cube[2], tmpSide,    1);
-				strncpy(cube[3], tmpSide[7], 1);
-				strncpy(cube[5], tmpSide[1], 1);
-				strncpy(cube[6], tmpSide[8], 1);
-				strncpy(cube[7], tmpSide[5], 1);
-				strncpy(cube[8], tmpSide[2], 1);
-
-				//edges rotation
-
-				int k = 3;
-				for(int i=0; i<12; i++){
-
-					strncpt(cube[blueEdge[i]], tmpEdge[k], 1);
-					k = (k+1)%12;
+				k=(k+2)%10;
+				//shouldn't be true but jic
+				if(k==4){
+					k+=2;
 				}
-
-				return 0;
-
-
 			}
 
+			//edges rotation
+			//TODO: see if this can be easily translated with an offset
+			int k = 9;
+			for(int i=0; i<12; i++){
+				strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
+				k = (k+1)%12;
+			}
+			
 
+		case red:
+			//make a list of what the edges are for each side so we can do this in a loop
+			//side
+			strncpy(tmpSide, cube, 9);
+			
+			//TODO: fix edges
+			for(int i = 0; i<12; i++){
+				strncpy(tmpEdge[i], cube[blueEdge[i]], 1);
+			}
+		
+			//face rotation
+
+			//to do this where the cube index is greater than 9,
+			//use the same modulo then add an offset that unique to each side
+
+			//red edge rotation
+			int k = 3;
+			for(int i=0; i<4; i++){
+				if(direction){
+					strncpy(cube[k+redOffset], tmpSide[bEdge[i]+redOffset], 1);
+				}
+				else if(!direction){
+					strncpy(cube[bEdge[i]+redOffset], tmpSide[k+redOffset], 1);
+				}
+				k = (k+2)%8;
+			}
+			//blue corner rotation
+			int k = 6
+			for(int i=0; i<4; i++){
+				if(direction){
+					strncpy(cube[k+redOffset], tmpSide[bCorn[i]+redOffset], 1);
+				}
+				else if(!direction){
+					strncpy(cube[bCorn[i]+redOffset], tmpSide[k+redOffset], 1);
+				}
+				k=(k+2)%10;
+				//shouldn't be true but jic
+				if(k==4){
+					k+=2;
+				}
+			}
+
+			//edges rotation
+			//TODO: see if this can be easily translated with an offset
+			int k = 9;
+			for(int i=0; i<12; i++){
+				strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
+				k = (k+1)%12;
+			}
+			return 0;
+
+		case yellow:
+			//make a list of what the edges are for each side so we can do this in a loop
+			//side
+			strncpy(tmpSide, cube, 9);
+			
+			//TODO: fix edges
+			for(int i = 0; i<12; i++){
+				strncpy(tmpEdge[i], cube[blueEdge[i]], 1);
+			}
+		
+			//face rotation
+
+			//to do this where the cube index is greater than 9,
+			//use the same modulo then add an offset that unique to each side
+
+			//red edge rotation
+			int k = 3;
+			for(int i=0; i<4; i++){
+				if(direction){
+					strncpy(cube[k+yellowOffset], tmpSide[bEdge[i]+yellowOffset], 1);
+				}
+				else if(!direction){
+					strncpy(cube[bEdge[i]+yellowOffset], tmpSide[k+yellowOffset], 1);
+				}
+				k = (k+2)%8;
+			}
+			//blue corner rotation
+			int k = 6
+			for(int i=0; i<4; i++){
+				if(direction){
+					strncpy(cube[k+yellowOffset], tmpSide[bCorn[i]+yellowOffset], 1);
+				}
+				else if(!direction){
+					strncpy(cube[bCorn[i]+yellowOffset], tmpSide[k+yellowOffset], 1);
+				}
+				k=(k+2)%10;
+				//shouldn't be true but jic
+				if(k==4){
+					k+=2;
+				}
+			}
+
+			//edges rotation
+			//TODO: see if this can be easily translated with an offset
+			int k = 9;
+			for(int i=0; i<12; i++){
+				strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
+				k = (k+1)%12;
+			}
+
+		case orange:
+			//make a list of what the edges are for each side so we can do this in a loop
+			//side
+			strncpy(tmpSide, cube, 9);
+			
+			//TODO: fix edges
+			for(int i = 0; i<12; i++){
+				strncpy(tmpEdge[i], cube[blueEdge[i]], 1);
+			}
+		
+			//face rotation
+
+			//to do this where the cube index is greater than 9,
+			//use the same modulo then add an offset that unique to each side
+
+			//red edge rotation
+			int k = 3;
+			for(int i=0; i<4; i++){
+				if(direction){
+					strncpy(cube[k+orangeOffset], tmpSide[bEdge[i]+orangeOffset], 1);
+				}
+				else if(!direction){
+					strncpy(cube[bEdge[i]+orangeOffset], tmpSide[k+orangeOffset], 1);
+				}
+				k = (k+2)%8;
+			}
+			//blue corner rotation
+			int k = 6
+			for(int i=0; i<4; i++){
+				if(direction){
+					strncpy(cube[k+orangeOffset], tmpSide[bCorn[i]+orangeOffset], 1);
+				}
+				else if(!direction){
+					strncpy(cube[bCorn[i]+orangeOffset], tmpSide[k+orangeOffset], 1);
+				}
+				k=(k+2)%10;
+				//shouldn't be true but jic
+				if(k==4){
+					k+=2;
+				}
+			}
+
+			//edges rotation
+			//TODO: see if this can be easily translated with an offset
+			int k = 9;
+			for(int i=0; i<12; i++){
+				strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
+				k = (k+1)%12;
+			}
+
+		case green:
+			//make a list of what the edges are for each side so we can do this in a loop
+			//side
+			strncpy(tmpSide, cube, 9);
+			
+			//TODO: fix edges
+			for(int i = 0; i<12; i++){
+				strncpy(tmpEdge[i], cube[blueEdge[i]], 1);
+			}
+		
+			//face rotation
+
+			//to do this where the cube index is greater than 9,
+			//use the same modulo then add an offset that unique to each side
+
+			//red edge rotation
+			int k = 3;
+			for(int i=0; i<4; i++){
+				if(direction){
+					strncpy(cube[k+greenOffset], tmpSide[bEdge[i]+greenOffset], 1);
+				}
+				else if(!direction){
+					strncpy(cube[bEdge[i]+greenOffset], tmpSide[k+greenOffset], 1);
+				}
+				k = (k+2)%8;
+			}
+			//blue corner rotation
+			int k = 6
+			for(int i=0; i<4; i++){
+				if(direction){
+					strncpy(cube[k+greenOffset], tmpSide[bCorn[i]+greenOffset], 1);
+				}
+				else if(!direction){
+					strncpy(cube[bCorn[i]+greenOffset], tmpSide[k+greenOffset], 1);
+				}
+				k=(k+2)%10;
+				//shouldn't be true but jic
+				if(k==4){
+					k+=2;
+				}
+			}
+
+			//edges rotation
+			//TODO: see if this can be easily translated with an offset
+			int k = 9;
+			for(int i=0; i<12; i++){
+				strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
+				k = (k+1)%12;
+			}
+
+		case white:
+			//make a list of what the edges are for each side so we can do this in a loop
+			//side
+			strncpy(tmpSide, cube, 9);
+			
+			//TODO: fix edges
+			for(int i = 0; i<12; i++){
+				strncpy(tmpEdge[i], cube[blueEdge[i]], 1);
+			}
+		
+			//face rotation
+
+			//to do this where the cube index is greater than 9,
+			//use the same modulo then add an offset that unique to each side
+
+			//red edge rotation
+			int k = 3;
+			for(int i=0; i<4; i++){
+				if(direction){
+					strncpy(cube[k+whiteOffset], tmpSide[bEdge[i]+whiteOffset], 1);
+				}
+				else if(!direction){
+					strncpy(cube[bEdge[i]+whiteOffset], tmpSide[k+whiteOffset], 1);
+				}
+				k = (k+2)%8;
+			}
+			//blue corner rotation
+			int k = 6
+			for(int i=0; i<4; i++){
+				if(direction){
+					strncpy(cube[k+whiteOffset], tmpSide[bCorn[i]+whiteOffset], 1);
+				}
+				else if(!direction){
+					strncpy(cube[bCorn[i]+whiteOffset], tmpSide[k+whiteOffset], 1);
+				}
+				k=(k+2)%10;
+				//shouldn't be true but jic
+				if(k==4){
+					k+=2;
+				}
+			}
+
+			//edges rotation
+			//TODO: see if this can be easily translated with an offset
+			int k = 9;
+			for(int i=0; i<12; i++){
+				strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
+				k = (k+1)%12;
+			}
 	}
 	
 }

@@ -11,12 +11,19 @@
 #define orange 32;
 #define green 41;
 #define white 50;
+#define blueOffset 0;
+#define redOffset  9;
+#define yellowOffset 18;
+#define orangeOffset 27;
+#define greenOffset 36;
+#define whiteOffset 45;
 
-
+char MASTER_CUBE = "bbbbbbbbbrrrrrrrrryyyyyyyyyooooooooogggggggggwwwwwwwww";
 char cube = "bbbbbbbbbrrrrrrrrryyyyyyyyyooooooooogggggggggwwwwwwwww";
 int blueEdge = [9, 10, 11, 18, 19, 20, 27, 28, 29, 53, 52, 51];
-int bEdge = [1, 3, 5, 7];
-int bCorn = [0, 2, 6, 8];
+int bEdge = [1, 7, 3, 5];
+int bCorn = [0, 6, 2, 8];
+
 
 /*rotate face*/
 Cube rotate(Cube c, int f, int direction);
