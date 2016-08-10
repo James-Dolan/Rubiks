@@ -75,7 +75,7 @@ int rotate(int face, int direction)
 			
 			//TODO: fix edges
 			for(int i = 0; i<12; i++){
-				strncpy(tmpEdge[i], cube[blueEdge[i]], 1);
+				strncpy(tmpEdge[i], cube[redEdge[i]], 1);
 			}
 		
 			//face rotation
@@ -114,7 +114,7 @@ int rotate(int face, int direction)
 			//TODO: see if this can be easily translated with an offset
 			int k = 9;
 			for(int i=0; i<12; i++){
-				strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
+				strncpy(cube[redEdge[i]], tmpEdge[k], 1);
 				k = (k+1)%12;
 			}
 			return 0;
@@ -126,7 +126,7 @@ int rotate(int face, int direction)
 			
 			//TODO: fix edges
 			for(int i = 0; i<12; i++){
-				strncpy(tmpEdge[i], cube[blueEdge[i]], 1);
+				strncpy(tmpEdge[i], cube[yellowEdge[i]], 1);
 			}
 		
 			//face rotation
@@ -165,7 +165,7 @@ int rotate(int face, int direction)
 			//TODO: see if this can be easily translated with an offset
 			int k = 9;
 			for(int i=0; i<12; i++){
-				strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
+				strncpy(cube[yellowEdge[i]], tmpEdge[k], 1);
 				k = (k+1)%12;
 			}
 
@@ -176,7 +176,7 @@ int rotate(int face, int direction)
 			
 			//TODO: fix edges
 			for(int i = 0; i<12; i++){
-				strncpy(tmpEdge[i], cube[blueEdge[i]], 1);
+				strncpy(tmpEdge[i], cube[orangeEdge[i]], 1);
 			}
 		
 			//face rotation
@@ -215,7 +215,7 @@ int rotate(int face, int direction)
 			//TODO: see if this can be easily translated with an offset
 			int k = 9;
 			for(int i=0; i<12; i++){
-				strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
+				strncpy(cube[orangeEdge[i]], tmpEdge[k], 1);
 				k = (k+1)%12;
 			}
 
@@ -226,7 +226,7 @@ int rotate(int face, int direction)
 			
 			//TODO: fix edges
 			for(int i = 0; i<12; i++){
-				strncpy(tmpEdge[i], cube[blueEdge[i]], 1);
+				strncpy(tmpEdge[i], cube[greenEdge[i]], 1);
 			}
 		
 			//face rotation
@@ -265,7 +265,7 @@ int rotate(int face, int direction)
 			//TODO: see if this can be easily translated with an offset
 			int k = 9;
 			for(int i=0; i<12; i++){
-				strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
+				strncpy(cube[greenEdge[i]], tmpEdge[k], 1);
 				k = (k+1)%12;
 			}
 
@@ -276,7 +276,7 @@ int rotate(int face, int direction)
 			
 			//TODO: fix edges
 			for(int i = 0; i<12; i++){
-				strncpy(tmpEdge[i], cube[blueEdge[i]], 1);
+				strncpy(tmpEdge[i], cube[whiteEdge[i]], 1);
 			}
 		
 			//face rotation
@@ -312,10 +312,10 @@ int rotate(int face, int direction)
 			}
 
 			//edges rotation
-			//TODO: see if this can be easily translated with an offset
+		
 			int k = 9;
 			for(int i=0; i<12; i++){
-				strncpy(cube[blueEdge[i]], tmpEdge[k], 1);
+				strncpy(cube[whiteEdge[i]], tmpEdge[k], 1);
 				k = (k+1)%12;
 			}
 	}
