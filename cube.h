@@ -5,90 +5,21 @@
 #ifndef _CUBE_H_
 #define _CUBE_H_
 
-enum COLOR{
-	blue,
-	white,
-	red,
-	green,
-	yellow,
-	orange
-};
+#define blue 5;
+#define red 14;
+#define yellow 23;
+#define orange 32;
+#define green 41;
+#define white 50;
 
-enum SIDE{
-	cur,
-	top,
-	left,
-	back,
-	bottom,
-	right
-};
 
-typedef struct corner Corner;
+char cube = "bbbbbbbbbrrrrrrrrryyyyyyyyyooooooooogggggggggwwwwwwwww";
+int blueEdge = [9, 10, 11, 18, 19, 20, 27, 28, 29, 53, 52, 51];
+int bEdge = [1, 3, 5, 7];
+int bCorn = [0, 2, 6, 8];
 
-struct corner
-{
-	//3 colors per corner
-	char colors[3];
-
-	//0, 1, 2; 0 being the proper orientation
-	int orient;
-	
-};
-
-typedef struct edge Edge;
-
-struct edge
-{
-	//2 colors per corner
-	char colors[2];
-
-	//0, 1; 0 being the proper oreientation
-	int orient;
-
-};
-
-typedef struct face Face;
-
-struct face{
-int face_color;
-int face_state[3][3];
-int fBlue;
-int fWhite;
-int fRed;
-int fGreen;
-int fYellow;
-int fOrange;
-
-typedef struct cube Cube;
-
-struct cube{
-Face faces[6];
-/*TODO: impliment cube for the alternate implimentation*/
-
-/*one more implimentation using 3 arrays*/
-int cube[3][3][3];
-};
-
-/*initilize a face with all cubies colored color*/
-Face init_face(int color);
-
-/*paint a face color*/
-Face paint_face(Face face, int color);
-
-/*paint a cubie color*/
-Face paint_cubie(Face face, int x, int y, int color);
-
-/*get cubie color*/
-int get_cubie(Face face, int x, int y);
-
-/*create a cube in a solved state*/
-Cube cube_create(void);
-
-/*rotate face clockwise*/
-Cube rotate_c(Cube c, Face f);
-
-/*rotate face counter clockwise*/
-Cube rotate_CC(Cube c, Face f);
+/*rotate face*/
+Cube rotate(Cube c, int f, int direction);
 
 /*scramble a cube*/
 Cube scramble(Cube c);
