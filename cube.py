@@ -81,9 +81,11 @@ def rotate(face, direction):
 		
 
 		#edges rotation
+		#TODO this does cc rotation on c rotatation
 		k = 9
 		for i in range(12):
-			cube[blueEdge[i]] = tmpEdge[k]
+			if(direction):
+				cube[blueEdge[i]] = tmpEdge[k]
 			k = (k+1)%12
 		
 		
@@ -341,7 +343,9 @@ def main():
 	print("Testing rotation:\n\n")
 	print("Testing Blue\n")
 	rotate(blue, 1)
+	print(cube)
 	rotate(blue, 0)
+	print(cube)
 	if(cube == MASTER_CUBE):
 		print("Blue passed\n\n")
 	
