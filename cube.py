@@ -17,8 +17,8 @@ greenOffset = 36
 whiteOffset = 45
 		
 
-MASTER_CUBE = "bbbbbbbbbrrrrrrrrryyyyyyyyyooooooooogggggggggwwwwwwwww"
-cube = "bbbbbbbbbrrrrrrrrryyyyyyyyyooooooooogggggggggwwwwwwwww"
+MASTER_CUBE = list("bbbbbbbbbrrrrrrrrryyyyyyyyyooooooooogggggggggwwwwwwwww")
+cube = list("bbbbbbbbbrrrrrrrrryyyyyyyyyooooooooogggggggggwwwwwwwww")
 blueEdge = [9, 10, 11, 18, 19, 20, 27, 28, 29, 53, 52, 51]
 redEdge = [6, 7, 8, 18, 21, 24, 36, 39, 42, 45, 48, 51]
 yellowEdge = [6, 7, 8, 17, 14, 11, 38, 37, 36, 27, 30, 33]
@@ -60,7 +60,7 @@ def rotate(face, direction):
 				cube[k] = tmpSide[bEdge[i]]
 			
 			elif(not direction):
-				cube[kbEdge[i]] = tmpSide[k]
+				cube[bEdge[i]] = tmpSide[k]
 			
 			k = (k+2)%8
 		
